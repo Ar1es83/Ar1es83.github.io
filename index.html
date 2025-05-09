@@ -3,197 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的OC世界 - 原创角色展示</title>
-    <meta name="description" content="展示我创作的原创角色、插画、动图和故事">
+    <title>home</title>
+    <meta name="description" content="my oc?!">
     <style>
-        /* 基础样式 */
-        :root {
-            --primary-color: #6a4c93;
-            --secondary-color: #8a5a44;
-            --accent-color: #f8bbd0;
-            --text-color: #333;
-            --light-bg: #f9f5ff;
-        }
-        
+        /* 简洁的基础样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica', 'Arial', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
-            background-color: var(--light-bg);
+            color: #333;
+            background-color: #fafafa;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
         }
         
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        nav {
-            background-color: var(--primary-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        h1 {
+            font-weight: 300;
             margin: 0;
         }
         
-        nav li {
-            padding: 1rem 1.5rem;
-            transition: background 0.3s;
-        }
-        
-        nav li:hover {
-            background-color: var(--secondary-color);
+        nav {
+            padding: 1rem 0;
+            text-align: center;
         }
         
         nav a {
-            color: white;
+            margin: 0 1rem;
+            color: #666;
             text-decoration: none;
-            font-weight: 500;
+            font-size: 1.1rem;
         }
         
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        nav a:hover {
+            color: #000;
         }
         
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
         }
         
-        .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+        .artwork {
             background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
         
-        .gallery-item:hover {
+        .artwork:hover {
             transform: translateY(-5px);
         }
         
-        .gallery-item img, .gallery-item video {
+        .artwork img {
             width: 100%;
             height: auto;
             display: block;
         }
         
-        .gallery-caption {
-            padding: 1rem;
+        .artwork-info {
+            padding: 1rem 0;
             text-align: center;
-        }
-        
-        .character-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 3rem 0;
-            align-items: flex-start;
-        }
-        
-        .character-card {
-            flex: 1 1 300px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .character-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .character-info {
-            padding: 1.5rem;
-        }
-        
-        .character-info h3 {
-            color: var(--primary-color);
-            margin-top: 0;
         }
         
         footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
             text-align: center;
             padding: 2rem 0;
-            margin-top: 3rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .character-section {
-                flex-direction: column;
-            }
+            color: #999;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
         }
     </style>
 </head>
 <body>
     <!-- 页眉 -->
     <header>
-        <div class="header-content">
-            <h1>我的OC世界</h1>
-            <p>展示我创作的原创角色、插画和故事</p>
-        </div>
+        <h1>好吧我mc oc然后我没做完</h1>
+        <p>有点低俗了</p>
     </header>
     
     <!-- 导航栏 -->
     <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#home">首页</a></li>
-                <li><a href="#characters">角色介绍</a></li>
-                <li><a href="#gallery">作品画廊</a></li>
-                <li><a href="#about">关于创作者</a></li>
-                <li><a href="#contact">联系方式</a></li>
-            </ul>
-        </div>
+        <a href="index.html">首页</a>
+        <a href="characters.html">角色介绍</a>
+        <a href="gallery.html">作品集</a>
+        <a href="about.html">关于我</a>
     </nav>
     
-    <!-- 主要内容区 -->
-    <main class="container">
-        <!-- 欢迎部分 -->
-        <section id="home">
-            <h2>欢迎来到我的OC世界</h2>
-            <p>这里是我创作的所有原创角色的家园，包含他们的故事、设
+    <!-- 画廊展示 -->
+    <main>
+        <div class="gallery">
+            <!-- 作品1 -->
+            <div class="artwork">
+                <img src="images/oc1.jpg" alt="OC角色设计 1">
+                <div class="artwork-info">
+                    <h3>角色名称1</h3>
+                    <p>2023年创作 | 数字绘画</p>
+                </div>
+            </div>
+            
+            <!-- 作品2 -->
+            <div class="artwork">
+                <img src="images/oc2.jpg" alt="OC角色设计 2">
+                <div class="artwork-info">
+                    <h3>角色名称2</h3>
+                    <p>2023年创作 | 数字绘画</p>
+                </div>
+            </div>
+            
+            <!-- 作品3 -->
+            <div class="artwork">
+                <img src="images/oc3.jpg" alt="OC角色设计 3">
+                <div class="artwork-info">
+                    <h3>角色名称3</h3>
+                    <p>2023年创作 | 数字绘画</p>
+                </div>
+            </div>
+            
+            <!-- 可以继续添加更多作品 -->
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>卧槽好低俗啊。</p>
+    </footer>
+</body>
+</html>
