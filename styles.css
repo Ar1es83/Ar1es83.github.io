@@ -1,0 +1,516 @@
+/* ========================================================
+   ☆ 梦核 OC 空间 - 手绘风专属小窝样式表 ☆
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=VT323&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+
+:root {
+  --sky-blue: #32a1dc;
+  --grass-green: #8cee33;
+  --frame-white: #ffffff;
+  --ink-black: #111111;
+  --glass-bg: rgba(255, 255, 255, 0.68);
+  --glass-border: #111111;
+  --glass-shadow: 3px 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--sky-blue);
+  color: var(--ink-black);
+  font-family: 'Caveat', 'VT323', 'Noto Sans SC', cursive, sans-serif;
+  overflow-x: hidden;
+  padding: 24px 16px 36px;
+}
+
+/* 整个屏幕外层手绘白色边框 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 12px;
+  border: 7px solid var(--frame-white);
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* ========================================================
+   手绘背景：天空 + 圆润平滑大云朵 + 浅绿山丘
+   ======================================================== */
+.sky-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* 圆润大云朵无限向右循环漂浮 */
+.cloud-cluster {
+  position: absolute;
+  top: 0;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+  will-change: transform;
+}
+
+/* 第一朵大云：平滑圆润，顶部较高 */
+.cloud-1 {
+  width: 250px;
+  height: 135px;
+  top: 7%;
+  left: -270px;
+  animation: driftRightSmooth 46s linear infinite;
+}
+
+/* 第二朵大云：更大更圆，错开层级 */
+.cloud-2 {
+  width: 280px;
+  height: 150px;
+  top: 19%;
+  left: -300px;
+  animation: driftRightSmooth 62s linear infinite 16s;
+}
+
+/* 第三朵云：中等圆润 */
+.cloud-3 {
+  width: 220px;
+  height: 120px;
+  top: 32%;
+  left: -240px;
+  animation: driftRightSmooth 52s linear infinite 32s;
+}
+
+@keyframes driftRightSmooth {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + 340px));
+  }
+}
+
+/* 底部浅绿草地缓坡 */
+.grass-hill {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 48vh;
+  min-height: 290px;
+  background-color: var(--grass-green);
+  border-top: 5px solid rgba(17, 17, 17, 0.45);
+  border-radius: 65% 55% 0 0 / 25% 20% 0 0;
+}
+
+/* ========================================================
+   核心主容器（竖向流式排版，严格契合手绘画稿）
+   ======================================================== */
+.stage-container {
+  position: relative;
+  z-index: 10;
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ========================================================
+   1. 顶部 GIF 动态标题区：完全空出，透明底，无边框
+   ======================================================== */
+.gif-title-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 0;
+}
+
+.title-gif-wrapper {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-gif-media {
+  max-width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ========================================================
+   2. 半透明随身听音乐播放器
+   ======================================================== */
+.player-card {
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2.5px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 12px 18px 14px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.player-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.now-playing-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 65%;
+}
+
+.player-time-display {
+  font-family: 'VT323', monospace;
+  font-size: 19px;
+  opacity: 0.85;
+}
+
+/* 流线型可拖动波纹进度条 */
+.seekbar-container {
+  width: 100%;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  touch-action: none;
+}
+
+.seekbar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(17, 17, 17, 0.18);
+  border-radius: 999px;
+  position: relative;
+  border: 1px solid rgba(17, 17, 17, 0.6);
+}
+
+.seekbar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #111111;
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+.seekbar-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border: 2.5px solid #111111;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.seekbar-container:hover .seekbar-thumb {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.seekbar-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  touch-action: auto;
+}
+
+.seekbar-container:focus-within {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 控制按钮栏 */
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.center-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-ctrl {
+  background: #ffffff;
+  border: 2px solid var(--ink-black);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.12s ease;
+}
+
+.btn-ctrl:hover {
+  transform: translateY(-1px);
+  background: #fdfaf2;
+}
+
+.btn-ctrl:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+.btn-play-main {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  background: #ffffff;
+}
+
+/* 歌单抽屉列表 */
+.playlist-drawer {
+  display: none;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--ink-black);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 4px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.playlist-drawer.is-open {
+  display: block;
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 6px;
+  border-bottom: 1.5px dashed #aaa;
+  margin-bottom: 6px;
+}
+
+.playlist-sub {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.playlist-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.playlist-item {
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  transition: background 0.15s;
+}
+
+.playlist-item:hover {
+  background: rgba(140, 238, 51, 0.25);
+}
+
+.track-button {
+  display: block;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #111;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.track-button:hover { background: rgba(140, 238, 51, 0.25); }
+.track-button.active { background: #111; color: #fff; font-weight: bold; }
+
+/* ========================================================
+   3. 中间 PNG 立绘超链接：完全空出，透明底
+   ======================================================== */
+.oc-figure-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.oc-link {
+  display: flex;
+  min-width: 220px;
+  min-height: 310px;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.oc-link:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
+}
+
+.oc-figure-img {
+  max-width: 100%;
+  width: 220px;
+  height: auto;
+  max-height: 310px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ========================================================
+   4. 底部六个网站格子：空出来的透明底，上面是方形超链接，下面是网站名
+   ======================================================== */
+.websites-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 24px;
+  width: 100%;
+  max-width: 380px;
+  justify-items: center;
+}
+
+.site-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 正方形 PNG 图标链接 */
+.site-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  text-decoration: none;
+  background: transparent;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.site-icon-link:hover {
+  transform: translateY(-3px) scale(1.05);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.site-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 网站名标签 */
+.site-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink-black);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ========================================================
+   5. 纯显示时间和日期：国际标准格式，磨砂半透明胶囊，与播放器风格统一
+   ======================================================== */
+.footer-clock-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.clock-capsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid var(--glass-border);
+  border-radius: 999px;
+  padding: 5px 14px;
+  box-shadow: var(--glass-shadow);
+  font-family: 'VT323', monospace;
+  font-size: 21px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--ink-black);
+}
+
+/* 响应式调整 */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 10px 24px;
+  }
+  .stage-container {
+    gap: 16px;
+  }
+  .sites-grid {
+    gap: 14px 16px;
+    max-width: 320px;
+  }
+  .site-icon-link {
+    width: 66px;
+    height: 66px;
+  }
+  .site-name {
+    font-size: 17px;
+  }
+  .oc-figure-img {
+    width: 180px;
+    max-height: 250px;
+  }
+}

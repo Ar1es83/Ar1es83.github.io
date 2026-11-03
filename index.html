@@ -1,113 +1,161 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>oc</title>
-    <meta name="description" content="你看我屌不">
-    <style>
-        /* 简洁的基础样式 */
-        body {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: #fafafa;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        h1 {
-            font-weight: 300;
-            margin: 0;
-        }
-        
-        nav {
-            padding: 1rem 0;
-            text-align: center;
-        }
-        
-        nav a {
-            margin: 0 1rem;
-            color: #666;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-        
-        nav a:hover {
-            color: #000;
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .artwork {
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .artwork:hover {
-            transform: translateY(-5px);
-        }
-        
-        .artwork img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .artwork-info {
-            padding: 1rem 0;
-            text-align: center;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            color: #999;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>梦核 OC 秘密小窝</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
-    <!-- 页眉 -->
-    <header>
-        <h1>卧槽先这样我没写完</h1>
-        <p>事已至此先砰砰砰吧</p>
-    </header>
-    <div class="gif-center">
-    <img src="我服了.gif" alt="砰砰砰">
-</div>
 
-<style>
-.gif-center {
-    text-align: center;     /* 水平居中 */
-    margin: 50px auto;     /* 上下50px，左右自动 */
-}
+  <!-- 手绘背景与向右平滑漂浮的圆润白云 -->
+  <div class="sky-background" aria-hidden="true">
+    <!-- 云朵 1 -->
+    <div class="cloud-cluster cloud-1">
+      <svg viewBox="0 0 260 140" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 115 C25 115 10 95 10 75 C10 52 30 35 55 35 C62 35 70 38 76 42 C88 20 114 8 142 8 C176 8 204 26 212 55 C218 53 224 52 230 52 C248 52 260 67 260 85 C260 102 246 115 228 115 Z" />
+      </svg>
+    </div>
+    <!-- 云朵 2 -->
+    <div class="cloud-cluster cloud-2">
+      <svg viewBox="0 0 280 150" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+        <path d="M55 125 C28 125 12 105 12 82 C12 58 32 40 58 40 C65 40 73 43 80 47 C93 22 122 10 152 10 C188 10 218 29 227 60 C234 58 241 57 248 57 C268 57 280 73 280 92 C280 111 265 125 245 125 Z" />
+      </svg>
+    </div>
+    <!-- 云朵 3 -->
+    <div class="cloud-cluster cloud-3">
+      <svg viewBox="0 0 240 130" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+        <path d="M48 108 C24 108 10 90 10 70 C10 48 28 32 52 32 C58 32 66 35 72 38 C84 18 108 8 134 8 C166 8 192 24 200 52 C206 50 212 49 218 49 C234 49 245 63 245 80 C245 96 232 108 215 108 Z" />
+      </svg>
+    </div>
 
-.gif-center img {
-    display: inline-block;  /* 使margin-auto生效 */
-    max-width: 90%;
-    height: auto;
-}
-</style>
-    <!-- 页脚 -->
-    <footer>
-        <p>:3</p>
+    <!-- 底部浅绿草地缓坡 -->
+    <div class="grass-hill"></div>
+  </div>
+
+  <!-- 页面主体容器 -->
+  <main class="stage-container">
+
+    <!-- 1. 顶部 GIF 动态标题区：完全空出，无边框，纯净透明底 -->
+    <section class="gif-title-section" aria-label="动态标题">
+      <div class="title-gif-wrapper">
+        <img id="titleGifPreview" class="title-gif-media" src="./banner.gif" alt="动态标题" onerror="this.style.visibility='hidden'">
+      </div>
+    </section>
+
+    <!-- 2. 半透明音乐播放器 -->
+    <section class="player-card" aria-label="随身听音乐播放器">
+      <div class="player-topline">
+        <span class="now-playing-label" id="currentTrackTitle">01. 无尽的下午</span>
+        <span class="player-time-display" id="timeDisplay">00:00 / 02:36</span>
+      </div>
+
+      <!-- 可拖拽/点击的手绘感流线型进度条 -->
+      <div class="seekbar-container" id="seekbarContainer" title="拖动或点击调整进度">
+        <div class="seekbar-track">
+          <div class="seekbar-fill" id="seekbarFill"></div>
+          <div class="seekbar-thumb" id="seekbarThumb"></div>
+        </div>
+        <input id="seekSlider" class="seekbar-input" type="range" min="0" max="156" step="0.1" value="0" aria-label="播放进度">
+      </div>
+
+      <!-- 控制按钮栏 -->
+      <div class="player-controls">
+        <button class="btn-ctrl btn-playlist" id="btnPlaylistToggle" type="button" aria-label="歌单列表" aria-expanded="false" aria-controls="playlistDrawer" title="查看歌单">
+          <span>☰</span>
+        </button>
+        <div class="center-controls">
+          <button class="btn-ctrl btn-prev" id="btnPrev" type="button" aria-label="上一曲" title="上一曲">
+            <span>⏮</span>
+          </button>
+          <button class="btn-ctrl btn-play-main" id="btnPlay" type="button" aria-label="播放" title="播放/暂停">
+            <span id="playIcon">▶</span>
+          </button>
+          <button class="btn-ctrl btn-next" id="btnNext" type="button" aria-label="下一曲" title="下一曲">
+            <span>⏭</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 展开歌单抽屉 -->
+      <div class="playlist-drawer" id="playlistDrawer">
+        <div class="playlist-header">
+          <span>📼 记忆磁带歌单</span>
+          <span class="playlist-sub">点击切歌</span>
+        </div>
+        <ul class="playlist-items" id="playlistUl">
+          <!-- JS 自动渲染 -->
+        </ul>
+      </div>
+
+      <audio id="audioEngine" preload="metadata"></audio>
+    </section>
+
+    <!-- 3. 中间 PNG 立绘超链接：完全空出，透明底，无提示按钮 -->
+    <section class="oc-figure-section" aria-label="OC 立绘">
+      <a class="oc-link" id="ocLink" href="#websites" title="点击跳转链接">
+        <img id="ocFigureImg" class="oc-figure-img" src="./oc.png" alt="OC 原创角色立绘" onerror="this.style.visibility='hidden'">
+      </a>
+    </section>
+
+    <!-- 4. 底部六个网站格子：按照手绘画稿，上面是正方形 PNG 跳转超链接，下面是网站名，透明底 -->
+    <section class="websites-section" id="websites" aria-label="外链网站格子">
+      <div class="sites-grid">
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 1">
+            <img class="site-icon-img" src="./site1.png" alt="网站 1" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 2">
+            <img class="site-icon-img" src="./site2.png" alt="网站 2" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 3">
+            <img class="site-icon-img" src="./site3.png" alt="网站 3" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 4">
+            <img class="site-icon-img" src="./site4.png" alt="网站 4" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 5">
+            <img class="site-icon-img" src="./site5.png" alt="网站 5" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+        <div class="site-item">
+          <a class="site-icon-link" href="https://github.com" target="_blank" rel="noopener noreferrer" title="网站 6">
+            <img class="site-icon-img" src="./site6.png" alt="网站 6" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'><rect width=\'76\' height=\'76\' x=\'2\' y=\'2\' fill=\'none\' stroke=\'%23111111\' stroke-width=\'2.5\' rx=\'8\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'22\' font-family=\'Caveat, cursive\' font-weight=\'bold\' fill=\'%23111111\'>PNG</text></svg>';">
+          </a>
+          <span class="site-name">网站名</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. 纯显示时间和日期：去掉了文字前缀，国际通用格式 YYYY-MM-DD HH:MM:SS，与磨砂半透明风格统一 -->
+    <footer class="footer-clock-bar">
+      <div class="clock-capsule" id="liveClockBadge">
+        <span id="liveClock">2026-11-04 00:00:00</span>
+      </div>
     </footer>
+
+  </main>
+
 </body>
 </html>
