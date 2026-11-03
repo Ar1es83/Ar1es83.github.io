@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>梦核 OC 秘密小窝</title>
+  <title>home</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./script.js" defer></script>
 </head>
 <body>
 
-  <!-- 手绘背景与向右平滑漂浮的圆润白云 -->
+  <!-- 云 -->
   <div class="sky-background" aria-hidden="true">
     <!-- 云朵 1 -->
     <div class="cloud-cluster cloud-1">
@@ -30,34 +30,34 @@
       </svg>
     </div>
 
-    <!-- 底部浅绿草地缓坡 -->
+    <!-- 底部坡 -->
     <div class="grass-hill"></div>
   </div>
 
-  <!-- 页面主体容器 -->
+  <!-- 页面主体 -->
   <main class="stage-container">
 
     <!-- 1. 顶部 GIF 动态标题区：完全空出，无边框，纯净透明底 -->
-    <section class="gif-title-section" aria-label="动态标题">
+    <section class="gif-title-section" aria-label="TT">
       <div class="title-gif-wrapper">
-        <img id="titleGifPreview" class="title-gif-media" src="./banner.gif" alt="动态标题" onerror="this.style.visibility='hidden'">
+        <img id="titleGifPreview" class="title-gif-media" src="./banner.gif" alt="tit" onerror="this.style.visibility='hidden'">
       </div>
     </section>
 
-    <!-- 2. 半透明音乐播放器 -->
-    <section class="player-card" aria-label="随身听音乐播放器">
+    <!-- 2. 音乐播放器 -->
+    <section class="player-card" aria-label="music plyer">
       <div class="player-topline">
         <span class="now-playing-label" id="currentTrackTitle">01. 无尽的下午</span>
         <span class="player-time-display" id="timeDisplay">00:00 / 02:36</span>
       </div>
 
       <!-- 可拖拽/点击的手绘感流线型进度条 -->
-      <div class="seekbar-container" id="seekbarContainer" title="拖动或点击调整进度">
+      <div class="seekbar-container" id="seekbarContainer" title="pb">
         <div class="seekbar-track">
           <div class="seekbar-fill" id="seekbarFill"></div>
           <div class="seekbar-thumb" id="seekbarThumb"></div>
         </div>
-        <input id="seekSlider" class="seekbar-input" type="range" min="0" max="156" step="0.1" value="0" aria-label="播放进度">
+        <input id="seekSlider" class="seekbar-input" type="range" min="0" max="156" step="0.1" value="0" aria-label="playback progress">
       </div>
 
       <!-- 控制按钮栏 -->
@@ -81,8 +81,8 @@
       <!-- 展开歌单抽屉 -->
       <div class="playlist-drawer" id="playlistDrawer">
         <div class="playlist-header">
-          <span>📼 记忆磁带歌单</span>
-          <span class="playlist-sub">点击切歌</span>
+          <span>playlist</span>
+          <span class="playlist-sub">switch song</span>
         </div>
         <ul class="playlist-items" id="playlistUl">
           <!-- JS 自动渲染 -->
